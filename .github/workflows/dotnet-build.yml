@@ -1,28 +1,28 @@
 name: build
-  on:
+on:
     
-    push:
-      branches-ignore: [main]
-    schedule:
-      - cron: '0 * * * *' # Executar a cada hora
-    pull_request:
-      branches: [main]
+  push:
+    branches-ignore: [main]
+  schedule:
+    - cron: '0 * * * *' # Executar a cada hora
+  pull_request:
+    branches: [main]
 
-  jobs:
-    build:
-      runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: 'Checkout GitHub Action'
-          uses: actions/checkout@v2
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v2
 
-        - name: Set up .NET Core
-          uses: actions/setup-dotnet@v2
-          with:
-            dotnet-version: '5.0.x'
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '5.0.x'
 
-        - name: Restore dependencies
-          run: dotnet restore **/*.csproj
+      - name: Restore dependencies
+        run: dotnet restore **/*.csproj
 
       - name: Build the webapp
         run: dotnet build **/*.csproj --no-restore
