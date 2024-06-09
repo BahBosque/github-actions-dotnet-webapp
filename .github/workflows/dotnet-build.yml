@@ -6,7 +6,7 @@ on:
   schedule:
     - cron: '0 * * * *' # Executar a cada hora
   pull_request:
-    branches: [main]
+    branches: [main] #comentario
 
 jobs:
   build:
