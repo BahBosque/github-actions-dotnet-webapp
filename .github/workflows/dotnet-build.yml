@@ -1,12 +1,12 @@
 name: build
+
 on:
-    
   push:
     branches-ignore: [main]
   schedule:
     - cron: '0 * * * *' # Executar a cada hora
   pull_request:
-    branches: [main] #comentario
+    branches: [main]
 
 jobs:
   build:
@@ -14,17 +14,15 @@ jobs:
 
     steps:
       - name: 'Checkout GitHub Action'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2 # Action pré-existente do GitHub
 
       - name: Set up .NET Core
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v2 # Action pré-existente do GitHub
         with:
-          dotnet-version: '5.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: dotnet restore **/*.csproj
 
       - name: Build the webapp
         run: dotnet build **/*.csproj --no-restore
-
-      
